@@ -12,7 +12,7 @@ clock.prototype.calcSeconds = function(objDate, el) {
 };
 
 clock.prototype.calcMinutes = function(objDate, el) {
-	var min = objDate.getMinutes() + 1;
+	var min = objDate.getMinutes();
 	var percent = (100/60*min).toFixed(2) + "%";
 	el.height(percent);
 };
