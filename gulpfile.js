@@ -16,7 +16,6 @@ gulp.task('makeCss', function () {
 gulp.task("browserify", function() {
     return browserify({entries:'./js/index.js'})
         .bundle()
-        .pipe(uglify())
         .pipe(source("bundle.js"))
         .pipe(gulp.dest("build"));
     //定义多个入口文件
