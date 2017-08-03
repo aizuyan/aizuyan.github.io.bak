@@ -1,0 +1,24 @@
+{
+  "name": "test-npm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "moment": "^2.18.1"
+  },
+  "devDependencies": {
+    "animate.css": "^3.5.2",
+    "browserify": "^14.4.0",
+    "event-stream": "^3.3.4",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.3.2",
+    "gulp-rename": "^1.2.2",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
