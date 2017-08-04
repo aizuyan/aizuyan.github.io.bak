@@ -1,10 +1,12 @@
 var gulp = require('gulp'),
     less = require('gulp-less'),
+    es = require('event-stream'),
 	browserify = require('browserify'),
     source = require('vinyl-source-stream'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
-    cssmin = require('gulp-minify-css');
+    cssmin = require('gulp-minify-css'),
+    path= require("path");
  
 gulp.task('makeCss', function () {
     gulp.src('less/**/*.less')
@@ -14,28 +16,27 @@ gulp.task('makeCss', function () {
 });
 
 gulp.task("browserify", function() {
-    return browserify({entries:'./js/index.js'})
+    /*return browserify({entries:'./js/index.js'})
         .bundle()
         .pipe(source("bundle.js"))
         .pipe(gulp.dest("build"));
+        */
     //定义多个入口文件
-    /*var entryFiles = [
-        './js/index.js'
+    var entryFiles = [
+        './js/index.js',
+        './js/foot-clock.js'
     ];
 
     //遍历映射这些入口文件
     var tasks = entryFiles.map(function(entry){
         return browserify({entries: [entry]})
             .bundle()
-            .pipe(source(entry))
-            .pipe(rename({
-                extname: '.bundle.js'
-            }))
-            .pipe(gulp.dest('./dist'));
+            .pipe(source(path.basename(entry)))
+            .pipe(gulp.dest('./build'));
     });
 
     //创建一个合并流
-    return es.merge.apply(null, tasks);   */     
+    return es.merge.apply(null, tasks);  
 });
 
 gulp.task("uglifyJs", function() {
@@ -46,5 +47,5 @@ gulp.task("uglifyJs", function() {
 
 gulp.task("watch", function() {
     gulp.watch("less/**/*.less", ["makeCss"]);
-    gulp.watch("js/index.js", ["browserify", "uglifyJs"]);
+    gulp.watch("js/**/*.js", ["browserify", "uglifyJs"]);
 });
